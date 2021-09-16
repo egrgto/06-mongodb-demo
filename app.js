@@ -19,11 +19,12 @@ const payoneerReportSchema= new mongoose.Schema({
 
 const PayoneerReport = mongoose.model('PayoneerReport',payoneerReportSchema);
 
+/*
 async function crearPayoneerReport(){
     const payoneerReport = new PayoneerReport({
-        date : '14 Sep, 2021',
-        description : 'david.acosta@live.com.ar',
-        amount : '500.00',
+        date : '12 Sep, 2021',
+        description : 'emir@live.com.ar',
+        amount : '1500.00',
         currency : 'USD',
         status : 'Completed',
         reportName : 'Test'
@@ -34,3 +35,19 @@ async function crearPayoneerReport(){
 }
 
 crearPayoneerReport();
+*/
+
+async function listarPayoneerReport(){
+    const payoneerReport = await PayoneerReport
+        //.find({ amount : 500}) //buscar y filtrar
+        .find() //buscar todo
+        .limit(10) //primeros 10 registros
+        .sort({date: -1}) //fecha descendente
+        .select({
+            description:1
+        }) //seleccionar campos a mostrar
+        ;
+    console.log(payoneerReport);
+}
+
+listarPayoneerReport();
