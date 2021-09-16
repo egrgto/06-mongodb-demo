@@ -41,8 +41,16 @@ async function listarPayoneerReport(){
     const payoneerReport = await PayoneerReport
         //.find({ amount : 500}) //buscar y filtrar
         .find() //buscar todo
+        
+        .and([
+            {description:/.*acost.*/},
+            {amount:{$gte:500}}
+        ]) //Expresiones Regulares y operadores logicos
+        
         .limit(10) //primeros 10 registros
+        
         .sort({date: -1}) //fecha descendente
+        
         .select({
             description:1
         }) //seleccionar campos a mostrar
