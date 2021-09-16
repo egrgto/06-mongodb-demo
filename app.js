@@ -38,16 +38,24 @@ crearPayoneerReport();
 */
 
 async function listarPayoneerReport(){
+    
+    const numeroPage = 2;
+    const sizePage = 10;
+    // api/payoneerReport?numeroPage=4&sizePage=10
+
     const payoneerReport = await PayoneerReport
         //.find({ amount : 500}) //buscar y filtrar
+        
         .find() //buscar todo
+
+        .skip((numeroPage-1)*sizePage) //Paginacion
         
         .and([
             {description:/.*acost.*/},
             {amount:{$gte:500}}
         ]) //Expresiones Regulares y operadores logicos
         
-        .limit(10) //primeros 10 registros
+        .limit(sizePage) //Paginacion
         
         .sort({date: -1}) //fecha descendente
         
