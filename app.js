@@ -19,11 +19,18 @@ const payoneerReportSchema= new mongoose.Schema({
 
 const PayoneerReport = mongoose.model('PayoneerReport',payoneerReportSchema);
 
-const payoneerReport = new PayoneerReport({
-    date : '14 Sep, 2021',
-    description : 'david.acosta@live.com.ar',
-    amount : 500.00,
-    currency : 'USD',
-    status : 'Completed',
-    reportName : 'Test'
-})
+async function crearPayoneerReport(){
+    const payoneerReport = new PayoneerReport({
+        date : '14 Sep, 2021',
+        description : 'david.acosta@live.com.ar',
+        amount : '500.00',
+        currency : 'USD',
+        status : 'Completed',
+        reportName : 'Test'
+    })
+    
+    const res = await payoneerReport.save();
+    console.log(res);
+}
+
+crearPayoneerReport();
