@@ -1,1 +1,1 @@
-# 06-mongodb-demossss
+# 06-mongodb-demos
